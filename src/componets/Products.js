@@ -36,7 +36,10 @@ function Products() {
 
               setListproducts(newProducts);
               localStorage.setItem("products", JSON.stringify(newProducts));
-
+              setProduct("");
+              setClassification("");
+              setPrice("");
+              setQuantity("");
               setEditId(null);
             } else {
               let newProduct = [
@@ -53,6 +56,11 @@ function Products() {
 
               setListproducts(newProduct);
               localStorage.setItem("products", JSON.stringify(newProduct));
+              setProduct("");
+              setClassification("");
+              setPrice("");
+              setQuantity("");
+              setEditId(null);
             }
           }}
           className="btn-primary"
@@ -95,7 +103,7 @@ function Products() {
           className="date-input"
         />
         <input
-        value={quantity}
+          value={quantity}
           onChange={(e) => {
             setQuantity(e.target.value);
           }}

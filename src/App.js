@@ -15,17 +15,14 @@ function App() {
       <Navbar setPage={setPage} />
 
       <main className="main-content">
-      {page === "dashboard" && <Dashboard />}
-      {page === "products" && <Products />}
-      {page === "clients" && <Clients />}
-      {page === "employees" && <Employees />}
-      {page === "settings" && <Settings />}
+        {page === "dashboard" && <Dashboard />}
+        {page === "products" && <Products />}
+        {page === "clients" && <Clients />}
+        {page === "employees" && <Employees />}
+        {page === "settings" && <Settings />}
       </main>
     </div>
   );
 }
 
-
 export default App;
-
-  

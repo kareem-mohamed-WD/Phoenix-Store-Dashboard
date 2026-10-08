@@ -1,4 +1,3 @@
-
 function Dashboard() {
   let clients = JSON.parse(localStorage.getItem("clients")) || [];
   let employees = JSON.parse(localStorage.getItem("employees")) || [];
@@ -6,17 +5,14 @@ function Dashboard() {
 
   return (
     <div className="dashboard-page">
-
       {/* Header */}
       <div className="dashboard-header">
         <h1>Dashboard</h1>
         <p>نظرة عامة على المتجر</p>
       </div>
 
-
       {/* Statistics */}
       <div className="dashboard-cards">
-
         {/* Total Clients */}
         <div className="dashboard-card clients-card">
           <div className="dashboard-icon clients-icon">
@@ -29,7 +25,6 @@ function Dashboard() {
             <strong>{clients.length}</strong>
           </div>
         </div>
-
 
         {/* Total Employees */}
         <div className="dashboard-card employees-card">
@@ -44,7 +39,6 @@ function Dashboard() {
           </div>
         </div>
 
-
         {/* Total Products */}
         <div className="dashboard-card products-card">
           <div className="dashboard-icon products-icon">
@@ -58,7 +52,6 @@ function Dashboard() {
           </div>
         </div>
 
-
         {/* Products Value */}
         <div className="dashboard-card value-card">
           <div className="dashboard-icon value-icon">
@@ -70,15 +63,10 @@ function Dashboard() {
             <p>Products Value</p>
 
             <strong>
-              $
-              {products.reduce(
-                (total, item) => total + Number(item.price),
-                0
-              )}
+              ${products.reduce((total, item) => total + Number(item.price,0), 0)}
             </strong>
           </div>
         </div>
-
 
         {/* Active Clients */}
         <div className="dashboard-card active-card">
@@ -91,15 +79,10 @@ function Dashboard() {
             <p>Active Clients</p>
 
             <strong>
-              {
-                clients.filter(
-                  (client) => client.status === "Active"
-                ).length
-              }
+              {clients.filter((client) => client?.status === "Active").length}
             </strong>
           </div>
         </div>
-
 
         {/* Inactive Clients */}
         <div className="dashboard-card inactive-card">
@@ -112,20 +95,13 @@ function Dashboard() {
             <p>Inactive Clients</p>
 
             <strong>
-              {
-                clients.filter(
-                  (client) => client.status === "Inactive"
-                ).length
-              }
+              {clients.filter((client) => client?.status === "Inactive").length}
             </strong>
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }
 
 export default Dashboard;
-
