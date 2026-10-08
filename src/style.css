@@ -1999,6 +1999,7 @@ body.dark-mode .sidebar-menu button:hover {
   .main-content {
     width: 100%;
     min-width: 0;
+    margin: 0;
 
     padding: 0;
 
