@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState , useEffect  } from "react";
 
 function Settings() {
   const [storeName, setStoreName] = useState(
     localStorage.getItem("storeName") || "Phoenix Store",
   );
+useEffect(() => {
+  document.body.classList.toggle("dark-mode", darkMode);
+
+  localStorage.setItem("theme", darkMode ? "dark" : "light");
+}, [darkMode]);
   const [email, setEmail] = useState(localStorage.getItem("storeEmail") || "");
   const [phone, setPhone] = useState(localStorage.getItem("storePhone") || "");
   const [Notifications, setNotifications] = useState(() => {
