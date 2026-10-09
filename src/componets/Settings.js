@@ -176,20 +176,13 @@ useEffect(() => {
               <p>تغيير مظهر لوحة التحكم بين الوضع الفاتح والداكن</p>
             </div>
 
-            <button
-              type="button"
-              className={`settings-toggle ${darkMode ? "active" : ""}`}
-              onClick={() => {
-                const newMode = !darkMode;
-
-                setDarkMode(newMode);
-                localStorage.setItem("theme", newMode ? "dark" : "light");
-
-                document.body.classList.toggle("dark-mode", newMode);
-              }}
-            >
-              <span></span>
-            </button>
+<button
+  type="button"
+  className={`settings-toggle ${darkMode ? "active" : ""}`}
+  onClick={() => setDarkMode(!darkMode)}
+>
+  <span></span>
+</button>
           </div>
         </div>
 
