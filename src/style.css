@@ -1124,7 +1124,7 @@ select:focus-visible {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 
   transition:
-    transform 0.2s ease,
+    transform 0.5s ease-out,
     box-shadow 0.2s ease,
     background-color 0.25s ease;
 }
@@ -1904,6 +1904,608 @@ body.dark-mode .sidebar-user {
 
 body.dark-mode .sidebar-menu button:hover {
   background: #263449;
+}
+
+
+
+
+/* ==========================================
+   RECENT INVENTORY
+========================================== */
+
+.recent-inventory {
+  width: 100%;
+  min-width: 0;
+  margin-top: 28px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e8edf4;
+  border-radius: 18px;
+  box-shadow: 0 5px 24px rgba(15, 23, 42, 0.04);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.recent-inventory__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.recent-inventory__heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.recent-inventory__title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  color: #2563eb;
+  background: #eff6ff;
+  border-radius: 14px;
+  font-size: 20px;
+}
+
+.recent-inventory__heading h2 {
+  margin: 0 0 7px;
+  color: #172033;
+  font-size: 20px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.recent-inventory__heading p {
+  margin: 0;
+  color: #8a94a6;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.recent-inventory__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 10px 14px;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   TABLE WRAPPER
+========================================== */
+
+.recent-inventory__table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+.recent-inventory__table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.recent-inventory__table-wrapper::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.recent-inventory__table-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.recent-inventory__table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.recent-inventory__table thead {
+  background: #f8fafc;
+}
+
+.recent-inventory__table th {
+  padding: 17px 20px;
+  color: #778399;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.recent-inventory__table td {
+  padding: 17px 20px;
+  color: #475569;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f2f6;
+  transition: background 0.2s ease;
+
+}
+
+.recent-inventory__table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.recent-inventory__table tbody tr:hover {
+  background: #f8faff;
+}
+
+.recent-inventory__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================
+   ROW NUMBER
+========================================== */
+
+.recent-inventory__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: #64748b;
+  background: #f1f5f9;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   PRODUCT NAME
+========================================== */
+
+.recent-inventory__product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+ 
+ 
+}
+
+.recent-inventory__product-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #e8edf4;
+  border-radius: 11px;
+  font-size: 15px;
+}
+
+.recent-inventory__product-name {
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+
+}
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
+.recent-inventory__category {
+  display: inline-block;
+  padding: 6px 10px;
+  color: #475569;
+  background: #f1f5f9;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   PRICE
+========================================== */
+
+.recent-inventory__price {
+  color: #172033;
+  font-size: 13px;
+  font-weight: 750;
+  white-space: nowrap;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* ==========================================
+   STOCK
+========================================== */
+
+.recent-inventory__stock {
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.recent-inventory__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.recent-inventory__status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.recent-inventory__status--available {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.recent-inventory__status--low {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.recent-inventory__status--out {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.recent-inventory__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+.recent-inventory__empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  margin-bottom: 16px;
+  color: #94a3b8;
+  background: #f1f5f9;
+  border-radius: 18px;
+  font-size: 25px;
+}
+
+.recent-inventory__empty h3 {
+  margin: 0 0 8px;
+  color: #334155;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.recent-inventory__empty p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.recent-inventory__footer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 24px;
+  color: #8490a3;
+  background: #fafbfc;
+  border-top: 1px solid #edf0f5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.recent-inventory__footer i {
+  flex-shrink: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==========================================
+   LATEST PRODUCTS - DARK MODE
+========================================== */
+
+body.dark-mode .recent-inventory {
+  background: #263449;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+/* Header */
+body.dark-mode .recent-inventory__header {
+  border-color: #334155;
+}
+
+body.dark-mode .recent-inventory__heading h2 {
+  color: #f1f5f9;
+}
+
+body.dark-mode .recent-inventory__heading p {
+  color: #94a3b8;
+}
+
+body.dark-mode .recent-inventory__title-icon {
+  background: #334155;
+  color: #60a5fa;
+}
+
+body.dark-mode .recent-inventory__count {
+  background: #334155;
+  color: #93c5fd;
+  border-color: #475569;
+}
+
+/* Table */
+body.dark-mode .recent-inventory__table thead {
+  background: #1e293b;
+}
+
+body.dark-mode .recent-inventory__table th {
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+body.dark-mode .recent-inventory__table td {
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+body.dark-mode .recent-inventory__table tbody tr:hover {
+  background: #334155;
+}
+
+/* Product */
+body.dark-mode .recent-inventory__number {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+body.dark-mode .recent-inventory__product-icon {
+  background: #334155;
+  color: #cbd5e1;
+  border-color: #475569;
+}
+
+body.dark-mode .recent-inventory__product-name {
+  color: #f1f5f9;
+}
+
+/* Category */
+body.dark-mode .recent-inventory__category {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+/* Price */
+body.dark-mode .recent-inventory__price {
+  color: #f1f5f9;
+}
+
+/* Stock */
+body.dark-mode .recent-inventory__stock {
+  color: #cbd5e1;
+}
+
+/* Status */
+body.dark-mode .recent-inventory__status--available {
+  background: #14532d;
+  color: #86efac;
+}
+
+body.dark-mode .recent-inventory__status--low {
+  background: #713f12;
+  color: #fde68a;
+}
+
+body.dark-mode .recent-inventory__status--out {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* Empty State */
+body.dark-mode .recent-inventory__empty-icon {
+  background: #334155;
+  color: #94a3b8;
+}
+
+body.dark-mode .recent-inventory__empty h3 {
+  color: #f1f5f9;
+}
+
+body.dark-mode .recent-inventory__empty p {
+  color: #94a3b8;
+}
+
+/* Footer */
+body.dark-mode .recent-inventory__footer {
+  background: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+body.dark-mode .recent-inventory__footer i {
+  color: #60a5fa;
+}
+
+/* Scrollbar */
+body.dark-mode .recent-inventory__table-wrapper {
+  scrollbar-color: #475569 #1e293b;
+}
+
+body.dark-mode .recent-inventory__table-wrapper::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+body.dark-mode .recent-inventory__table-wrapper::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 992px) {
+  .recent-inventory {
+    margin-top: 24px;
+    border-radius: 15px;
+  }
+
+  .recent-inventory__header {
+    padding: 20px;
+  }
+
+  .recent-inventory__table th,
+  .recent-inventory__table td {
+    padding: 15px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 576px) {
+  .recent-inventory {
+    margin-top: 20px;
+    border-radius: 13px;
+  }
+
+  .recent-inventory__header {
+    align-items: flex-start;
+    padding: 17px 14px;
+    gap: 10px;
+  }
+
+  .recent-inventory__heading {
+    gap: 10px;
+  }
+
+  .recent-inventory__title-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    font-size: 16px;
+  }
+
+  .recent-inventory__heading h2 {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .recent-inventory__heading p {
+    max-width: 190px;
+    font-size: 11px;
+  }
+
+  .recent-inventory__count {
+    gap: 5px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+
+  .recent-inventory__table {
+    min-width: 600px;
+  }
+
+  .recent-inventory__table th {
+    padding: 13px 12px;
+    font-size: 11px;
+  }
+
+  .recent-inventory__table td {
+    padding: 13px 12px;
+    font-size: 12px;
+  }
+
+  .recent-inventory__product {
+    gap: 8px;
+    min-width: 140px;
+  }
+
+  .recent-inventory__product-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 12px;
+  }
+
+  .recent-inventory__product-name {
+    font-size: 12px;
+  }
+
+  .recent-inventory__footer {
+    align-items: flex-start;
+    padding: 13px 14px;
+    font-size: 11px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 360px) {
+  .recent-inventory__header {
+    flex-wrap: wrap;
+  }
+
+  .recent-inventory__count {
+    margin-right: 49px;
+  }
+
+  .recent-inventory__heading p {
+    max-width: 230px;
+  }
 }
 
 /* =========================================================
