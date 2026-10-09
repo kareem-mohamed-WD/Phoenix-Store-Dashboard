@@ -11,7 +11,7 @@ function Settings() {
     let saved = localStorage.getItem("storeNotifications");
     return saved !== null ? saved === "true" : true;
   });
-  const [darkMode, setDarkMode] = useState(false);
+ const [darkMode, setDarkMode] = useState(() => { return localStorage.getItem("theme") === "dark"; });
   useEffect(() => {
   document.body.classList.toggle("dark-mode", darkMode);
 
