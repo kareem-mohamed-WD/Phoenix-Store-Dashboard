@@ -66,11 +66,7 @@ function Dashboard() {
             <strong>
               $
               {products
-                .reduce(
-                  (total, item) =>
-                    total + Number(item.price || 0) * Number(item.stock || 0),
-                  0,
-                )
+                .reduce((total, item) => total + Number(item.price), 0)
                 .toLocaleString()}
             </strong>
           </div>
@@ -106,7 +102,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
-    
+
       {/* Latest Products */}
       <div className="recent-inventory">
         {/* Header */}
@@ -231,7 +227,6 @@ function Dashboard() {
           <span>يتم عرض أحدث 8 منتجات تمت إضافتها إلى المتجر.</span>
         </div>
       </div>
-      
     </div>
   );
 }
