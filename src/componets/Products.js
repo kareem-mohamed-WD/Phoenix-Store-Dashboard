@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 function Products() {
   let [listproducts, setListproducts] = useState(() => {
     return JSON.parse(localStorage.getItem("products")) || [];
@@ -154,9 +155,9 @@ function Products() {
                   <td>
                     <span
                       className={`badge ${
-                        item.stock === 0
+                        Number(item.stock) === 0
                           ? "badge-danger"
-                          : item.stock < 10
+                          : Number(item.stock) < 10
                             ? "badge-warning"
                             : "badge-success"
                       }`}
@@ -164,7 +165,7 @@ function Products() {
                       {item.stock <= 0
                         ? "غير متوفر"
                         : item.stock < 10
-                          ? "قليل"
+                          ? "كمية قليلة"
                           : "متوفر"}
                     </span>
                   </td>

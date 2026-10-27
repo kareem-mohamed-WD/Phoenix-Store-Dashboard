@@ -6,6 +6,8 @@ import {
   Clients,
   Employees,
   Settings,
+  Orders,
+  Sales,
 } from "./componets";
 function App() {
   const [page, setPage] = useState("dashboard");
@@ -20,6 +22,8 @@ function App() {
         {page === "clients" && <Clients />}
         {page === "employees" && <Employees />}
         {page === "settings" && <Settings />}
+        {page === "orders" && <Orders />}
+        {page === "sales" && <Sales />}
       </main>
     </div>
   );
