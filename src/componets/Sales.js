@@ -70,7 +70,7 @@ function Sales() {
             </div>
           ))
         ) : (
-          <p>مفيش مبيعات لحد دلوقتي.</p>
+          <p>لا يوجد منتجات مباعة</p>
         )}
       </div>
 
@@ -79,7 +79,12 @@ function Sales() {
         <h3>سجل المبيعات</h3>
 
         {completedOrders.length === 0 ? (
-          <p>مفيش مبيعات مكتملة لحد دلوقتي.</p>
+          <div className="recent-inventory__empty">
+            <div className="recent-inventory__empty-icon">
+              <i className="fa-solid fa-box-open"></i>
+            </div>
+            <h3>لا توجد منتجات</h3>
+          </div>
         ) : (
           <table className="sales-table">
             <thead>

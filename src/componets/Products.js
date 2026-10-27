@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 function Products() {
   let [listproducts, setListproducts] = useState(() => {
     return JSON.parse(localStorage.getItem("products")) || [];
@@ -135,74 +134,90 @@ function Products() {
               <th>الإجراءات</th>
             </tr>
           </thead>
-          <tbody>
-            {listproducts
-              .filter((item) =>
-                item.name.toLowerCase().includes(search.toLowerCase()),
-              )
-              .filter((item) =>
-                classification
-                  ? item.category === classification
-                  : item.category,
-              )
-              .map((item) => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td className="fw-bold">{item.name}</td>
-                  <td>{item.category}</td>
-                  <td>${item.price}</td>
-                  <td>{item.stock}</td>
-                  <td>
-                    <span
-                      className={`badge ${
-                        Number(item.stock) === 0
-                          ? "badge-danger"
-                          : Number(item.stock) < 10
-                            ? "badge-warning"
-                            : "badge-success"
-                      }`}
-                    >
-                      {item.stock <= 0
-                        ? "غير متوفر"
-                        : item.stock < 10
-                          ? "كمية قليلة"
-                          : "متوفر"}
-                    </span>
-                  </td>
-                  <td className="actions-cell">
-                    <button
-                      onClick={() => {
-                        setProduct(item.name);
-                        setClassification(item.category);
-                        setPrice(item.price);
-                        setQuantity(item.stock);
-                        setEditId(item.id);
-                      }}
-                      className="btn-icon edit-btn"
-                      title="تعديل"
-                    >
-                      <i className="fa-solid fa-pen"></i>
-                    </button>
-                    <button
-                      onClick={() => {
-                        let newProducts = listproducts.filter(
-                          (product) => product.id !== item.id,
-                        );
-                        setListproducts(newProducts);
-                        localStorage.setItem(
-                          "products",
-                          JSON.stringify(newProducts),
-                        );
-                      }}
-                      className="btn-icon delete-btn"
-                      title="حذف"
-                    >
-                      <i className="fa-solid fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
+
+          {listproducts.length === 0 ? (
+            <tbody>
+              <tr>
+                <td colSpan="7">
+                  <div className="recent-inventory__empty">
+                    <div className="recent-inventory__empty-icon">
+                      <i className="fa-solid fa-box-open"></i>
+                    </div>
+                    <h3>لا توجد منتجات</h3>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          ) : (
+            <tbody>
+              {listproducts
+                .filter((item) =>
+                  item.name.toLowerCase().includes(search.toLowerCase()),
+                )
+                .filter((item) =>
+                  classification
+                    ? item.category === classification
+                    : item.category,
+                )
+                .map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td className="fw-bold">{item.name}</td>
+                    <td>{item.category}</td>
+                    <td>${item.price}</td>
+                    <td>{item.stock}</td>
+                    <td>
+                      <span
+                        className={`badge ${
+                          Number(item.stock) === 0
+                            ? "badge-danger"
+                            : Number(item.stock) < 10
+                              ? "badge-warning"
+                              : "badge-success"
+                        }`}
+                      >
+                        {item.stock <= 0
+                          ? "غير متوفر"
+                          : item.stock < 10
+                            ? "كمية قليلة"
+                            : "متوفر"}
+                      </span>
+                    </td>
+                    <td className="actions-cell">
+                      <button
+                        onClick={() => {
+                          setProduct(item.name);
+                          setClassification(item.category);
+                          setPrice(item.price);
+                          setQuantity(item.stock);
+                          setEditId(item.id);
+                        }}
+                        className="btn-icon edit-btn"
+                        title="تعديل"
+                      >
+                        <i className="fa-solid fa-pen"></i>
+                      </button>
+                      <button
+                        onClick={() => {
+                          let newProducts = listproducts.filter(
+                            (product) => product.id !== item.id,
+                          );
+                          setListproducts(newProducts);
+                          localStorage.setItem(
+                            "products",
+                            JSON.stringify(newProducts),
+                          );
+                        }}
+                        className="btn-icon delete-btn"
+                        title="حذف"
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

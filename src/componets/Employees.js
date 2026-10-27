@@ -128,58 +128,72 @@ function Employees() {
               <th>الإجراءات</th>
             </tr>
           </thead>
+          {employees.length === 0 ? (
+            <tbody>
+              <tr>
+                <td colSpan="7">
+                  <div className="recent-inventory__empty">
+                    <div className="recent-inventory__empty-icon">
+                      <i className="fa-solid fa-box-open"></i>
+                    </div>
+                    <h3>لا توجد منتجات</h3>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          ) : (
+            <tbody>
+              {employees
+                .filter((item) => item.name.includes(search))
+                .filter((item) => item.role.includes(role))
+                .map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
 
-          <tbody>
-            {employees
-              .filter((item) => item.name.includes(search))
-              .filter((item) => item.role.includes(role))
-              .map((item) => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
+                    <td>{item.name}</td>
 
-                  <td>{item.name}</td>
+                    <td>{item.role}</td>
 
-                  <td>{item.role}</td>
+                    <td>{item.phone}</td>
 
-                  <td>{item.phone}</td>
+                    <td>${item.salary}</td>
 
-                  <td>${item.salary}</td>
+                    <td className="employees-actions">
+                      <button
+                        onClick={() => {
+                          setEid(item.id);
+                          setName(item.name);
+                          setRole(item.role);
+                          setPhone(item.phone);
+                          setSalary(item.salary);
+                        }}
+                        className="employees-edit"
+                      >
+                        <i className="fa-solid fa-pen"></i>
+                      </button>
 
-                  <td className="employees-actions">
-                    <button
-                      onClick={() => {
-                        setEid(item.id);
-                        setName(item.name);
-                        setRole(item.role);
-                        setPhone(item.phone);
-                        setSalary(item.salary);
-                      }}
-                      className="employees-edit"
-                    >
-                      <i className="fa-solid fa-pen"></i>
-                    </button>
+                      <button
+                        className="employees-delete"
+                        onClick={() => {
+                          let newEmployees = employees.filter(
+                            (employee) => employee.id !== item.id,
+                          );
 
-                    <button
-                      className="employees-delete"
-                      onClick={() => {
-                        let newEmployees = employees.filter(
-                          (employee) => employee.id !== item.id,
-                        );
+                          setEmployees(newEmployees);
 
-                        setEmployees(newEmployees);
-
-                        localStorage.setItem(
-                          "employees",
-                          JSON.stringify(newEmployees),
-                        );
-                      }}
-                    >
-                      <i className="fa-solid fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
+                          localStorage.setItem(
+                            "employees",
+                            JSON.stringify(newEmployees),
+                          );
+                        }}
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

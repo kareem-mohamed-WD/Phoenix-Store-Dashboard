@@ -140,103 +140,117 @@ function Clients() {
               <th> تغيير الحالة</th>
             </tr>
           </thead>
+          {clients.length === 0 ? (
+            <tbody>
+              <tr>
+                <td colSpan="8">
+                  <div className="recent-inventory__empty">
+                    <div className="recent-inventory__empty-icon">
+                      <i className="fa-solid fa-box-open"></i>
+                    </div>
+                    <h3>لا توجد منتجات</h3>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          ) : (
+            <tbody>
+              {clients
+                .filter((item) => {
+                  if (!selectedClient) return true; // لو مش مختار حاجة يظهر الكل
+                  return item.status === selectedClient;
+                })
+                .map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
 
-          <tbody>
-            {clients
-              .filter((item) => {
-                if (!selectedClient) return true; // لو مش مختار حاجة يظهر الكل
-                return item.status === selectedClient;
-              })
-              .map((item) => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
+                    <td>{item.name}</td>
 
-                  <td>{item.name}</td>
+                    <td>{item.phone}</td>
 
-                  <td>{item.phone}</td>
+                    <td>{item.email}</td>
 
-                  <td>{item.email}</td>
+                    <td>{item.orders}</td>
 
-                  <td>{item.orders}</td>
+                    <td>
+                      <span
+                        style={
+                          item.status === "Active"
+                            ? { background: "#dcfce7", color: "#15803d" }
+                            : { background: "#fef3c7", color: "#a16207" }
+                        }
+                        className="clients-status"
+                      >
+                        {item.status}
+                      </span>
+                    </td>
 
-                  <td>
-                    <span
-                      style={
-                        item.status === "Active"
-                          ? { background: "#dcfce7", color: "#15803d" }
-                          : { background: "#fef3c7", color: "#a16207" }
-                      }
-                      className="clients-status"
-                    >
-                      {item.status}
-                    </span>
-                  </td>
+                    <td className="clients-actions">
+                      <button
+                        onClick={() => {
+                          setEditId(item.id);
+                          setName(item.name);
+                          setPhone(item.phone);
+                          setEmail(item.email);
+                          setOrders(item.orders);
+                          setselectedClient(item.status);
+                        }}
+                        className="clients-edit"
+                        title="تعديل"
+                      >
+                        <i className="fa-solid fa-pen"></i>
+                      </button>
 
-                  <td className="clients-actions">
-                    <button
-                      onClick={() => {
-                        setEditId(item.id);
-                        setName(item.name);
-                        setPhone(item.phone);
-                        setEmail(item.email);
-                        setOrders(item.orders);
-                        setselectedClient(item.status);
-                      }}
-                      className="clients-edit"
-                      title="تعديل"
-                    >
-                      <i className="fa-solid fa-pen"></i>
-                    </button>
+                      <button
+                        className="clients-delete"
+                        title="حذف"
+                        onClick={() => {
+                          let newClients = clients.filter(
+                            (client) => client.id !== item.id,
+                          );
 
-                    <button
-                      className="clients-delete"
-                      title="حذف"
-                      onClick={() => {
-                        let newClients = clients.filter(
-                          (client) => client.id !== item.id,
-                        );
+                          setClients(newClients);
 
-                        setClients(newClients);
-
-                        localStorage.setItem(
-                          "clients",
-                          JSON.stringify(newClients),
-                        );
-                      }}
-                    >
-                      <i className="fa-solid fa-trash"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        let newClients = clients.map((client) => {
-                          if (client.id === item.id) {
-                            return {
-                              ...client,
-                              status:
-                                client.status === "Active"
-                                  ? "Inactive"
-                                  : "Active",
-                            };
-                          }
-                          return client;
-                        });
-                        setClients(newClients);
-                        localStorage.setItem(
-                          "clients",
-                          JSON.stringify(newClients),
-                        );
-                      }}
-                      className="clients-edit-status"
-                      title="تغيير الحالة"
-                    >
-                      <i className="fa-solid fa-arrows-rotate"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
+                          localStorage.setItem(
+                            "clients",
+                            JSON.stringify(newClients),
+                          );
+                        }}
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          let newClients = clients.map((client) => {
+                            if (client.id === item.id) {
+                              return {
+                                ...client,
+                                status:
+                                  client.status === "Active"
+                                    ? "Inactive"
+                                    : "Active",
+                              };
+                            }
+                            return client;
+                          });
+                          setClients(newClients);
+                          localStorage.setItem(
+                            "clients",
+                            JSON.stringify(newClients),
+                          );
+                        }}
+                        className="clients-edit-status"
+                        title="تغيير الحالة"
+                      >
+                        <i className="fa-solid fa-arrows-rotate"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>
